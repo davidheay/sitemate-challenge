@@ -6,7 +6,7 @@ router.get('/api/issues', async (req, res)=>{
     const allTodoIssues = await todoIssuesModel.find({});
     res.status(200).json(allTodoIssues)
   }catch(err){
-    res.json(err);
+    res.status(400).json(err);
   }
 })
 
@@ -20,7 +20,7 @@ router.post('/api/issue', async (req, res)=>{
     const saveIssue = await newIssue.save()
     res.status(200).json(saveIssue);
   }catch(err){
-    res.json(err);
+    res.status(400).json(err);
   }
 })
 
@@ -30,7 +30,7 @@ router.put('/api/issue/:id', async (req, res)=>{
     const updateIssue = await todoIssuesModel.findByIdAndUpdate(req.params.id, {$set: req.body});
     res.status(200).json(updateIssue);
   }catch(err){
-    res.json(err);
+    res.status(400).json(err);
   }
 })
 
@@ -41,7 +41,7 @@ router.delete('/api/issue/:id', async (req, res)=>{
     console.log("Log: Deleted id" + req.params.id);
     res.status(200).json('Issue Deleted');
   }catch(err){
-    res.json(err);
+    res.status(400).json(err);
   }
 })
 
